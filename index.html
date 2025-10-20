@@ -1,212 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Al Furqan Scholars Academy</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: #f5f9ff;
-      color: #222;
-    }
 
-    header {
-      background-color: #004aad;
-      color: white;
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
-    }
-
-    nav {
-      background-color: #003580;
-      text-align: center;
-      padding: 0.5rem 0;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 15px;
-      font-weight: bold;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    section {
-      max-width: 900px;
-      margin: 2rem auto;
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    h2 {
-      color: #004aad;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    li {
-      margin: 10px 0;
-    }
-
-    a.enroll {
-      background-color: #004aad;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 5px;
-      text-decoration: none;
-      margin-left: 10px;
-    }
-
-    a.enroll:hover {
-      background-color: #003580;
-    }
-
-    footer {
-      background-color: #004aad;
-      color: white;
-      text-align: center;
-      padding: 1rem;
-      margin-top: 2rem;
-    }
-
-    /* Floating WhatsApp Button */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #25d366;
-      color: white;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 30px;
-      text-decoration: none;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      z-index: 1000;
-    }
-
-    .whatsapp-float:hover {
-      background-color: #20b955;
-    }
-
-    /* Popup styles */
-    .popup {
-      position: fixed;
-      bottom: 100px;
-      right: 20px;
-      background-color: #004aad;
-      color: white;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.3);
-      display: none;
-      animation: fadeIn 0.5s;
-      z-index: 999;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+  <!-- Link the CSS files -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="whatsapp.css">
 </head>
 <body>
+
   <header>
     <h1>Al Furqan Scholars Academy</h1>
-    <p>Spreading Authentic Islamic Knowledge in English, Arabic & Urdu</p>
+    <p>Spreading the Light of Qur’an and Sunnah in English, Arabic & Urdu</p>
   </header>
 
   <nav>
-    <a href="#about">About</a>
-    <a href="#courses">Courses</a>
-    <a href="#madani">Madani Qaida</a>
-    <a href="#askalim">Ask Alim</a>
+    <a href="index.html#home">Home</a>
+    <a href="about.html">About</a>
+    <a href="courses.html">Courses</a>
+    <a href="madani.html">Madani Qaida</a>
+    <a href="askalim.html">Ask Alim</a>
+    <a href="contact.html">Contact</a>
   </nav>
 
-  <section id="about">
-    <h2>About Al Furqan Scholars Academy</h2>
-    <p>Al Furqan Scholars Academy is dedicated to spreading authentic Islamic knowledge in English, Arabic & Urdu. Our courses include Dars-e-Nizami, Quran recitation & tafseer, Seerat-e-Rasool ﷺ, and short courses for children. Our teachers are experienced scholars trained in Shariah and Dars-e-Nizami methodology.</p>
-  </section>
+  <!-- HOME SECTION (index.html main content) -->
+  <main class="section" id="home">
+    <h2>Welcome to Al Furqan Scholars Academy</h2>
+    <p>We provide quality Islamic education in Dars-e-Nizami, Qur’an, Tafseer, and short courses for children and adults in English, Arabic & Urdu.</p>
 
-  <section id="courses">
-    <h2>Our Courses</h2>
-    <ul>
-      <li>Dars-e-Nizami (Short & Full Program) <a class="enroll" href="https://wa.me/923023003330?text=I%20want%20to%20enroll" target="_blank">Enroll</a></li>
-      <li>Farz Uloom Course <a class="enroll" href="https://wa.me/923023003330?text=I%20want%20to%20enroll" target="_blank">Enroll</a></li>
-      <li>Ehte’maam-e-Ramzan Course <a class="enroll" href="https://wa.me/923023003330?text=I%20want%20to%20enroll" target="_blank">Enroll</a></li>
-      <li>Ibaarat Course <a class="enroll" href="https://wa.me/923023003330?text=I%20want%20to%20enroll" target="_blank">Enroll</a></li>
-      <li>Seerat-e-Rasool Arabi ﷺ Course <a class="enroll" href="https://wa.me/923023003330?text=I%20want%20to%20enroll" target="_blank">Enroll</a></li>
-      <li>Tafseer-e-Qur’an Course <a class="enroll" href="https://wa.me/923023003330?text=I%20want%20to%20enroll" target="_blank">Enroll</a></li>
-      <li>Summer Camp <a class="enroll" href="https://wa.me/923023003330?text=I%20want%20to%20enroll" target="_blank">Enroll</a></li>
-      <li>Huqooq-e-Zaujain Course <a class="enroll" href="https://wa.me/923023003330?text=I%20want%20to%20enroll" target="_blank">Enroll</a></li>
-    </ul>
-  </section>
+    <h3>Courses Preview</h3>
+    <div class="courses-grid">
+      <!-- five sample course cards (images are placeholders) -->
+      <div class="course-card">
+        <img src="https://via.placeholder.com/400x200?text=Madani+Qaida" alt="Madani Qaida">
+        <h3>Madani Qaida (Beginner)</h3>
+        <p>Beginner Qaida for children & adults.</p>
+        <a class="btn" href="madani.html">Details</a>
+      </div>
+      <div class="course-card">
+        <img src="https://via.placeholder.com/400x200?text=Quran+Recitation" alt="Recitation">
+        <h3>Quran Recitation (Tajweed)</h3>
+        <p>Learn Tajweed and correct recitation.</p>
+        <a class="btn" href="courses.html#recitation">Details</a>
+      </div>
+      <div class="course-card">
+        <img src="https://via.placeholder.com/400x200?text=Tafseer" alt="Tafseer">
+        <h3>Tafseer & Translation</h3>
+        <p>Understand meanings and Tafseer of the Quran.</p>
+        <a class="btn" href="courses.html#tafsir">Details</a>
+      </div>
+      <div class="course-card">
+        <img src="https://via.placeholder.com/400x200?text=Hifz" alt="Hifz">
+        <h3>Quran Memorization (Hifz)</h3>
+        <p>Complete Hifz program with revision plan.</p>
+        <a class="btn" href="courses.html#hifz">Details</a>
+      </div>
+    </div>
 
-  <section id="madani">
-    <h2>Madani Qaida & Qur’an</h2>
-    <ul>
-      <li>Madani Qaida (Beginner) <a class="enroll" href="https://wa.me/923023003330?text=I%20want%20to%20enroll" target="_blank">Enroll</a></li>
-      <li>Qur’an Recitation (Intermediate) <a class="enroll" href="https://wa.me/923023003330?text=I%20want%20to%20enroll" target="_blank">Enroll</a></li>
-      <li>Qur’an Tafseer & Translation (Advanced) <a class="enroll" href="https://wa.me/923023003330?text=I%20want%20to%20enroll" target="_blank">Enroll</a></li>
-    </ul>
-  </section>
+    <h3>Video Lectures Preview</h3>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/videoseries?list=PLYOURCHANNELID" frameborder="0" allowfullscreen></iframe>
 
-  <section id="askalim">
-    <h2>Ask Alim</h2>
-    <p>Have a Shariah question? Ask our scholars via email or form submission.</p>
-    <a href="mailto:muftiakmalqtv2@gmail.com">Email Ask Alim</a>
-
-    <h3>Or submit via form:</h3>
-    <iframe src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true" width="100%" height="700" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-  </section>
+  </main>
 
   <footer>
-    <p>© 2025 Al Furqan Scholars Academy | Designed with ❤️ for Islamic Learning</p>
+    <p>📍 Lakhani Terrace, Punjab Town — Soldier Bazar No. 1, Madina Rd, Karachi, Pakistan</p>
+    <p>📞 WhatsApp: <a href="https://wa.me/923023003330" target="_blank">+92 302 3003330</a> | ✉ <a href="mailto:muftiakmalqtv2@gmail.com">muftiakmalqtv2@gmail.com</a></p>
+    <p>© 2025 Al Furqan Scholars Academy</p>
   </footer>
 
-  <!-- WhatsApp Floating Button -->
-  <a href="https://wa.me/923023003330?text=Assalamualaikum%2C%20I%20have%20a%20question" class="whatsapp-float" target="_blank">💬</a>
+  <!-- Floating WhatsApp button (visible on all pages) -->
+  <a class="whatsapp-float" href="https://wa.me/923023003330?text=Assalamualaikum%20I%20want%20to%20enroll" target="_blank" title="Chat on WhatsApp">
+    <i>💬</i>
+  </a>
 
-  <!-- Popup -->
-  <div class="popup" id="popupBox"></div>
-
-  <script>
-    const messages = [
-      "📖 Ask Alim your Shariah questions!",
-      "🎓 Enroll in Qur’an & Tafseer Courses!",
-      "🌙 Join our Dars-e-Nizami Program!",
-      "💌 Contact us via WhatsApp for Admissions!"
-    ];
-    let index = 0;
-
-    function showPopup() {
-      const popup = document.getElementById("popupBox");
-      popup.innerText = messages[index];
-      popup.style.display = "block";
-      setTimeout(() => popup.style.display = "none", 4000);
-      index = (index + 1) % messages.length;
-    }
-
-    setInterval(showPopup, 10000);
-  </script>
+  <!-- popup container created by script.js when needed -->
+  <script src="script.js"></script>
 </body>
 </html>
