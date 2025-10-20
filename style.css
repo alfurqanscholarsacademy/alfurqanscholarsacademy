@@ -1,0 +1,134 @@
+/* === GLOBAL STYLES === */
+body {
+  font-family: "Poppins", sans-serif;
+  background: #f8f9fa;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* === HEADER === */
+header {
+  background: linear-gradient(90deg, #004aad, #0078d4);
+  color: white;
+  padding: 1.5rem 0;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+nav {
+  margin-top: 10px;
+}
+
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* === SECTIONS === */
+section {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+  color: #004aad;
+  border-bottom: 2px solid #004aad;
+  padding-bottom: 0.5rem;
+}
+
+/* === COURSE LIST === */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px 0;
+  padding: 10px;
+  background: #eef4ff;
+  border-radius: 8px;
+}
+
+li a {
+  background: #0078d4;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+li a:hover {
+  background: #005bb5;
+}
+
+/* === FOOTER === */
+footer {
+  background: #004aad;
+  color: white;
+  text-align: center;
+  padding: 1.5rem 0;
+  margin-top: 2rem;
+}
+
+footer a {
+  color: #ffcc00;
+  text-decoration: none;
+  margin: 0 6px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+/* === POPUP STYLES === */
+.popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: white;
+  border: 2px solid #004aad;
+  border-radius: 12px;
+  padding: 15px 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 1000;
+  max-width: 300px;
+}
+
+.popup h4 {
+  margin: 0 0 8px;
+  color: #004aad;
+}
+
+.popup p {
+  margin: 0 0 10px;
+}
+
+.popup a {
+  background: #004aad;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+
+.popup a:hover {
+  background: #0078d4;
+}
