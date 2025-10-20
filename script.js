@@ -1,52 +1,48 @@
-// === POPUP FUNCTIONALITY ===
+// script.js — popups logic + page-specific behaviour
 
-// Define popup messages
-const popups = [
-  {
-    title: "Ask Alim",
-    message: "Have a Shariah question? Ask our scholars now!",
-    linkText: "Ask Now",
-    link: "mailto:muftiakmalqtv2@gmail.com"
-  },
-  {
-    title: "Enroll Now",
-    message: "Join our online Islamic courses today!",
-    linkText: "View Courses",
-    link: "#courses"
-  },
-  {
-    title: "Madani Qaida",
-    message: "Start your Qur’an journey with our beginner Madani Qaida class.",
-    linkText: "Enroll",
-    link: "https://wa.me/923023003330?text=I%20want%20to%20enroll"
-  }
+// POPUP ITEMS (rotate)
+const POPUP_ITEMS = [
+  { title: "Ask Alim", text: "Ask our scholars a Shariah question via email.", label: "Ask via Email", href: "mailto:muftiakmalqtv2@gmail.com" },
+  { title: "Enroll Now", text: "Enroll for our Dars-e-Nizami & short courses via WhatsApp.", label: "Enroll", href: "https://wa.me/923023003330?text=I%20want%20to%20enroll" },
+  { title: "Tafseer Course", text: "Join Tafseer-e-Qur'an classes — start today.", label: "View Courses", href: "#courses" }
 ];
 
-// Create popup container
-const popupBox = document.createElement("div");
-popupBox.classList.add("popup");
-document.body.appendChild(popupBox);
-
 let popupIndex = 0;
+const createPopup = () => {
+  let p = document.querySelector('.popup');
+  if (!p) {
+    p = document.createElement('div');
+    p.className = 'popup';
+    document.body.appendChild(p);
+  }
+  return p;
+};
 
-// Function to show popup
-function showPopup() {
-  const popup = popups[popupIndex];
-  popupBox.innerHTML = `
-    <h4>${popup.title}</h4>
-    <p>${popup.message}</p>
-    <a href="${popup.link}" target="_blank">${popup.linkText}</a>
-  `;
-  popupBox.style.display = "block";
-
-  setTimeout(() => {
-    popupBox.style.display = "none";
-  }, 7000); // visible for 7 seconds
-
-  popupIndex = (popupIndex + 1) % popups.length;
+function showPopupNow(item) {
+  const p = createPopup();
+  p.innerHTML = `<h4>${item.title}</h4><p>${item.text}</p><a href="${item.href}" target="_blank">${item.label}</a>`;
+  p.style.display = 'block';
+  // auto hide after 6.5s
+  setTimeout(()=>{ if (p) p.style.display = 'none'; }, 6500);
 }
 
-// Run popups every 10 seconds on Home or Courses
-if (window.location.pathname === "/" || window.location.pathname.includes("courses")) {
-  setInterval(showPopup, 10000);
+// Show popups on Home and Courses only
+function startPopupRotation() {
+  // decide if we are on home or courses
+  const path = window.location.pathname;
+  const hash = window.location.hash || '';
+  const onHome = hash === '' || hash === '#home' || path.endsWith('/') || path.endsWith('index.html');
+  const onCourses = hash.includes('courses') || path.includes('courses.html');
+
+  if(!onHome && !onCourses) return; // nothing
+
+  setInterval(()=> {
+    const item = POPUP_ITEMS[popupIndex % POPUP_ITEMS.length];
+    showPopupNow(item);
+    popupIndex++;
+  }, 10000); // every 10 seconds
 }
+
+document.addEventListener('DOMContentLoaded', ()=>{
+  startPopupRotation();
+});
