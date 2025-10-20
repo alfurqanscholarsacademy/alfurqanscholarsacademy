@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Al Furqan Scholars Academy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f4f6f9;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+    nav {
+      background-color: #00509e;
+      text-align: center;
+      padding: 10px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    section {
+      padding: 20px;
+      max-width: 900px;
+      margin: 20px auto;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    footer {
+      text-align: center;
+      background-color: #003366;
+      color: white;
+      padding: 15px;
+      font-size: 0.9rem;
+      margin-top: 20px;
+    }
+
+    /* Pop-up Styles */
+    .popup {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #00509e;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      z-index: 9999;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Al Furqan Scholars Academy</h1>
+    <p>Authentic Islamic Knowledge in Urdu, Arabic & English</p>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="courses.html">Courses</a>
+    <a href="madani.html">Madani Qaida & Qur’an</a>
+    <a href="askalim.html">Ask Alim</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <section id="intro">
+    <h2>Welcome to Al Furqan Scholars Academy</h2>
+    <p>Providing structured Islamic education through online and on-site courses under the guidance of experienced scholars trained in Shariah and Dars-e-Nizami methodology.</p>
+  </section>
+
+  <section id="highlights">
+    <h2>Popular Courses</h2>
+    <ul>
+      <li>Dars-e-Nizami (Full & Short Program)</li>
+      <li>Farz Uloom Course</li>
+      <li>Seerat-e-Rasool ﷺ Course</li>
+      <li>Tafseer-e-Qur’an Course</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Al Furqan Scholars Academy | Designed for educational purposes</p>
+  </footer>
+
+  <!-- Popups -->
+  <div id="popup" class="popup">Ask Alim your question or enroll today!</div>
+
+  <script>
+    const messages = [
+      "Ask Alim your question!",
+      "Enroll for Dars-e-Nizami online!",
+      "Join our Farz Uloom Course!",
+      "Explore Tafseer-e-Qur’an classes!"
+    ];
+    let index = 0;
+    const popup = document.getElementById("popup");
+
+    setInterval(() => {
+      popup.textContent = messages[index];
+      popup.style.display = "block";
+      setTimeout(() => popup.style.display = "none", 4000);
+      index = (index + 1) % messages.length;
+    }, 10000);
+  </script>
+</body>
+</html>
