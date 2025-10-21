@@ -1,240 +1,630 @@
-// Mobile menu toggle
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
-
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
-}));
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    });
-});
-
-// Side Popup Functionality
-function showPopup() {
-    document.getElementById('askAlimPopup').style.right = '20px';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-function closePopup() {
-    document.getElementById('askAlimPopup').style.right = '-400px';
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    scroll-behavior: smooth;
 }
 
-// Show popup 8 seconds after page load
-window.addEventListener('load', function() {
-    setTimeout(function() {
-        showPopup();
-    }, 8000);
-});
-
-// Close popup when clicking outside (for overlay - though we removed overlay)
-document.addEventListener('click', function(e) {
-    const popup = document.getElementById('askAlimPopup');
-    if (!popup.contains(e.target) && e.target !== hamburger) {
-        closePopup();
-    }
-});
-
-// Navbar background change on scroll
-window.addEventListener('scroll', function() {
-    const navbar = document.querySelector('.navbar');
-    if (window.scrollY > 100) {
-        navbar.style.background = 'rgba(44, 95, 45, 0.95)';
-        navbar.style.backdropFilter = 'blur(10px)';
-    } else {
-        navbar.style.background = '#2c5f2d';
-        navbar.style.backdropFilter = 'none';
-    }
-});
-
-// Course card animation on scroll
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-// Observe course cards for animation
-document.querySelectorAll('.course-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(card);
-});
-
-// Observe video cards for animation
-document.querySelectorAll('.video-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(card);
-});
-
-// Observe gallery images for animation
-document.querySelectorAll('.gallery-img').forEach(img => {
-    img.style.opacity = '0';
-    img.style.transform = 'translateY(20px)';
-    img.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(img);
-});
-
-// WhatsApp enrollment with course name
-function enrollWithWhatsApp(courseName) {
-    const message = `I want to enroll in ${courseName}`;
-    const encodedMessage = encodeURIComponent(message);
-    window.open(`https://wa.me/923023003330?text=${encodedMessage}`, '_blank');
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
-// Add click event to all enroll buttons
-document.querySelectorAll('.enroll-btn').forEach(button => {
-    button.addEventListener('click', function(e) {
-        e.preventDefault();
-        const courseName = this.closest('.course-card').querySelector('h3').textContent;
-        enrollWithWhatsApp(courseName);
-    });
-});
+/* Navigation */
+.navbar {
+    background: #2c5f2d;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
 
-// Active nav link highlighting
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.nav-link');
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-window.addEventListener('scroll', function() {
-    let current = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= (sectionTop - 200)) {
-            current = section.getAttribute('id');
-        }
-    });
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
 
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-});
+.logo-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid white;
+}
 
-// Loading animation
-window.addEventListener('load', function() {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.5s ease';
-    
-    setTimeout(function() {
-        document.body.style.opacity = '1';
-    }, 100);
-});
+.nav-logo h2 {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
 
-// Keyboard accessibility for popup
-document.addEventListener('keydown', function(e) {
-    const popup = document.getElementById('askAlimPopup');
-    if (e.key === 'Escape' && popup.style.right === '20px') {
-        closePopup();
-    }
-});
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
 
-// Enhanced WhatsApp integration
-function initWhatsAppIntegration() {
-    // Add WhatsApp floating button
-    const whatsappBtn = document.createElement('a');
-    whatsappBtn.href = 'https://wa.me/923023003330?text=I%20want%20to%20enroll%20in%20a%20course';
-    whatsappBtn.target = '_blank';
-    whatsappBtn.className = 'whatsapp-float';
-    whatsappBtn.innerHTML = '<i class="fab fa-whatsapp"></i>';
-    whatsappBtn.style.cssText = `
-        position: fixed;
-        width: 60px;
-        height: 60px;
-        bottom: 20px;
-        right: 20px;
-        background-color: #25d366;
-        color: white;
-        border-radius: 50px;
-        text-align: center;
-        font-size: 30px;
-        box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-        z-index: 1000;
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.nav-link:hover {
+    color: #ffd700;
+    background: rgba(255,255,255,0.1);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Hero Section with Video Background */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-top: 60px;
+    overflow: hidden;
+}
+
+.video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.video-bg iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(44, 95, 45, 0.8) 0%, rgba(76, 175, 80, 0.7) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 0 20px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-button {
+    background: #ff6b35;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+}
+
+.cta-button:hover {
+    background: #e55a2b;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.cta-button.secondary {
+    background: transparent;
+    border: 2px solid white;
+}
+
+.cta-button.secondary:hover {
+    background: white;
+    color: #2c5f2d;
+}
+
+.cta-button.small {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+}
+
+/* Sections */
+section {
+    padding: 100px 0;
+}
+
+/* About Section */
+.about {
+    background: #f8f9fa;
+    text-align: center;
+}
+
+.about h2 {
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+    color: #2c5f2d;
+    font-weight: 600;
+}
+
+.about p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* Courses Sections */
+.courses, .madani {
+    background: white;
+}
+
+.courses h2, .madani h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+    color: #2c5f2d;
+    font-weight: 600;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.course-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.3s;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
+}
+
+.course-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+.course-card h3 {
+    color: #2c5f2d;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.course-card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.enroll-btn {
+    background: #2c5f2d;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.enroll-btn:hover {
+    background: #ff6b35;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Video Lectures Section */
+.videos {
+    background: #f8f9fa;
+}
+
+.videos h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    color: #2c5f2d;
+    font-weight: 600;
+}
+
+.videos > .container > p {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: #666;
+}
+
+.video-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.video-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.video-card iframe {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.video-card h3 {
+    color: #2c5f2d;
+    font-size: 1.3rem;
+}
+
+/* Gallery Section */
+.gallery {
+    background: white;
+}
+
+.gallery h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    color: #2c5f2d;
+    font-weight: 600;
+}
+
+.gallery > .container > p {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: #666;
+}
+
+.image-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.gallery-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    transition: transform 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.gallery-img:hover {
+    transform: scale(1.05);
+}
+
+/* Ask Alim Section */
+.askalim {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+}
+
+.askalim h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.askalim > .container > p {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.askalim-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+}
+
+.askalim-card {
+    background: rgba(255,255,255,0.1);
+    padding: 2.5rem;
+    border-radius: 15px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.askalim-card i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #ffd700;
+}
+
+.askalim-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.askalim-card p {
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.askalim-note {
+    background: rgba(255,255,255,0.1);
+    padding: 1.5rem;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+    border-left: 4px solid #ffd700;
+}
+
+/* Contact Section */
+.contact {
+    background: #2c3e50;
+    color: white;
+}
+
+.contact h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+    font-weight: 600;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+}
+
+.contact-item i {
+    font-size: 1.5rem;
+    color: #ff6b35;
+    margin-top: 0.2rem;
+}
+
+.contact-item a {
+    color: #ffd700;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-item a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background: #1a252f;
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+/* Side Popup */
+.popup {
+    position: fixed;
+    top: 50%;
+    right: -400px;
+    transform: translateY(-50%);
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 9999;
+    width: 350px;
+    transition: right 0.5s ease-in-out;
+    border-left: 5px solid #2c5f2d;
+}
+
+.popup-content {
+    text-align: center;
+    position: relative;
+}
+
+.popup-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 1.5rem 0;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #ff6b35;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.popup-close:hover {
+    background: #e55a2b;
+}
+
+/* WhatsApp Float */
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: white;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background: #128C7E;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hamburger {
         display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: #2c5f2d;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        padding: 2rem 0;
+        gap: 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-item {
+        margin: 1rem 0;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
         align-items: center;
+    }
+
+    .cta-button {
+        width: 250px;
         justify-content: center;
-        text-decoration: none;
-        transition: all 0.3s;
-    `;
-    
-    whatsappBtn.addEventListener('mouseenter', function() {
-        this.style.transform = 'scale(1.1)';
-        this.style.background = '#128C7E';
-    });
-    
-    whatsappBtn.addEventListener('mouseleave', function() {
-        this.style.transform = 'scale(1)';
-        this.style.background = '#25d366';
-    });
-    
-    document.body.appendChild(whatsappBtn);
-}
+    }
 
-// Video background optimization
-function optimizeVideoBackground() {
-    const videoBg = document.querySelector('.video-bg iframe');
-    if (videoBg) {
-        // Add loading attribute for better performance
-        videoBg.setAttribute('loading', 'lazy');
+    section {
+        padding: 60px 0;
+    }
+
+    .about h2, .courses h2, .madani h2, .videos h2, .gallery h2, .askalim h2, .contact h2 {
+        font-size: 2.2rem;
+    }
+
+    .course-grid, .askalim-options {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+
+    .popup {
+        width: 300px;
+        right: -320px;
     }
 }
 
-// Initialize all features
-function initWebsite() {
-    initWhatsAppIntegration();
-    optimizeVideoBackground();
-    
-    // Add subtle animation to hero content
-    const heroContent = document.querySelector('.hero-content');
-    if (heroContent) {
-        heroContent.style.opacity = '0';
-        heroContent.style.transform = 'translateY(30px)';
-        heroContent.style.transition = 'opacity 1s ease, transform 1s ease';
-        
-        setTimeout(() => {
-            heroContent.style.opacity = '1';
-            heroContent.style.transform = 'translateY(0)';
-        }, 500);
+@media (max-width: 480px) {
+    .nav-logo h2 {
+        font-size: 1.4rem;
+    }
+
+    .about h2, .courses h2, .madani h2, .videos h2, .gallery h2, .askalim h2, .contact h2 {
+        font-size: 1.8rem;
+    }
+
+    .popup {
+        width: 280px;
+        right: -300px;
+        padding: 1.5rem;
     }
 }
-
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-    initWebsite();
-});
-
-// Console welcome message
-console.log('🕌 Welcome to Al Furqan Scholars Academy Website!');
-console.log('📞 Contact: +923023003330');
-console.log('📧 Email: muftiakmalqtv2@gmail.com');
-console.log('🎥 Prize Distribution Video: Active');
