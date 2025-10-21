@@ -91,16 +91,39 @@ body {
     transition: 0.3s;
 }
 
-/* Hero Section with Video Background */
+/* Quick Action Bar */
+.action-bar {
+    background: #2c5f2d;
+    padding: 15px 0;
+    position: sticky;
+    top: 70px;
+    z-index: 999;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.action-btn {
+    background: #ff6b35;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.action-btn:hover {
+    background: #e55a2b;
+    transform: translateY(-2px);
+}
+
+/* Clean Hero Section */
 .hero {
     position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    margin-top: 60px;
+    height: 70vh;
+    margin-top: 0;
     overflow: hidden;
 }
 
@@ -128,14 +151,27 @@ body {
     background: linear-gradient(135deg, rgba(44, 95, 45, 0.8) 0%, rgba(76, 175, 80, 0.7) 100%);
 }
 
-.hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    padding: 0 20px;
+/* Enrollment CTA Section */
+.enrollment-cta {
+    background: linear-gradient(135deg, #2c5f2d 0%, #4caf50 100%);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
 }
 
-.hero-buttons {
+.enrollment-cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.enrollment-cta p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+.enrollment-buttons {
     display: flex;
     gap: 1rem;
     justify-content: center;
@@ -177,6 +213,22 @@ body {
 .cta-button.small {
     padding: 10px 20px;
     font-size: 0.9rem;
+}
+
+.whatsapp-btn {
+    background: #25d366;
+}
+
+.whatsapp-btn:hover {
+    background: #128C7E;
+}
+
+.email-btn {
+    background: #ea4335;
+}
+
+.email-btn:hover {
+    background: #d33426;
 }
 
 /* Sections */
@@ -482,7 +534,7 @@ footer {
     padding: 2rem 0;
 }
 
-/* Side Popup */
+/* Fixed Side Popup */
 .popup {
     position: fixed;
     top: 50%;
@@ -496,6 +548,10 @@ footer {
     width: 350px;
     transition: right 0.5s ease-in-out;
     border-left: 5px solid #2c5f2d;
+}
+
+.popup.active {
+    right: 20px;
 }
 
 .popup-content {
@@ -581,9 +637,27 @@ footer {
         margin: 1rem 0;
     }
 
-    .hero-buttons {
+    .action-bar {
+        top: 60px;
+        padding: 10px 0;
+    }
+    
+    .hero {
+        height: 50vh;
+    }
+    
+    .enrollment-cta h2 {
+        font-size: 2rem;
+    }
+    
+    .enrollment-buttons {
         flex-direction: column;
         align-items: center;
+    }
+    
+    .enrollment-buttons .cta-button {
+        width: 250px;
+        justify-content: center;
     }
 
     .cta-button {
