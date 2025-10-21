@@ -1,152 +1,441 @@
-/* ===== style.css (Theme + layout + popup + buttons) ===== */
-:root {
-  --blue-1: #0b6fa4;
-  --blue-2: #004aad;
-  --nav: #003580;
-  --accent: #0078d4;
-  --muted: #f4f8fb;
-  --white: #ffffff;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-* { box-sizing: border-box; }
+
 body {
-  margin:0;
-  font-family: "Poppins", system-ui, Arial, sans-serif;
-  background: var(--muted);
-  color: #222;
-  line-height: 1.5;
-  -webkit-font-smoothing:antialiased;
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    scroll-behavior: smooth;
 }
-a { color: var(--blue-2); }
 
-/* HEADER + NAV */
-header {
-  background: linear-gradient(90deg, var(--blue-1) 0%, var(--blue-2) 100%);
-  color: var(--white);
-  padding: 28px 16px;
-  text-align: center;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
-header h1 { margin: 0; font-size: 1.6rem; letter-spacing: .2px; }
-header p { margin: 6px 0 0; font-size: 0.95rem; opacity: .95; }
 
-nav {
-  background: var(--nav);
-  padding: 10px 12px;
-  text-align: center;
+/* Navigation */
+.navbar {
+    background: #2c5f2d;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
-nav a {
-  color: var(--white);
-  text-decoration: none;
-  margin: 0 12px;
-  font-weight: 600;
-  font-size: 0.97rem;
-}
-nav a:hover { text-decoration: underline; }
 
-/* MAIN SECTION CARD */
-.section {
-  max-width: 1000px;
-  margin: 22px auto;
-  padding: 22px;
-  background: var(--white);
-  border-radius: 10px;
-  box-shadow: 0 6px 18px rgba(8,24,40,0.06);
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
-.section h2 { color: var(--blue-2); margin-top:0; }
 
-/* COURSES GRID */
-.courses-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px,1fr));
-  gap: 18px;
-  margin-top: 12px;
+.nav-logo h2 {
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 600;
 }
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.nav-link:hover {
+    color: #ffd700;
+    background: rgba(255,255,255,0.1);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background: white;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(135deg, #2c5f2d 0%, #4caf50 100%);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-top: 60px;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cta-button {
+    background: #ff6b35;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+}
+
+.cta-button:hover {
+    background: #e55a2b;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.cta-button.secondary {
+    background: transparent;
+    border: 2px solid white;
+}
+
+.cta-button.secondary:hover {
+    background: white;
+    color: #2c5f2d;
+}
+
+/* Sections */
+section {
+    padding: 100px 0;
+}
+
+/* About Section */
+.about {
+    background: #f8f9fa;
+    text-align: center;
+}
+
+.about h2 {
+    font-size: 2.8rem;
+    margin-bottom: 2rem;
+    color: #2c5f2d;
+    font-weight: 600;
+}
+
+.about p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: #555;
+}
+
+/* Courses Sections */
+.courses, .madani {
+    background: white;
+}
+
+.courses h2, .madani h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+    color: #2c5f2d;
+    font-weight: 600;
+}
+
+.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
 .course-card {
-  background:#fff;
-  border-radius:8px;
-  padding:12px;
-  border:1px solid #e6eef6;
-  box-shadow: 0 3px 10px rgba(3,17,28,0.03);
+    background: white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.3s;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    border: 1px solid #e0e0e0;
 }
-.course-card img{ width:100%; border-radius:6px; height:140px; object-fit:cover; }
-.course-card h3{ margin:10px 0 6px; color:var(--blue-2); font-size:1.05rem; }
-.course-card p{ margin:0 0 10px; font-size:0.95rem; color:#333; }
-.btn {
-  display:inline-block;
-  background: var(--blue-2);
-  color: #fff;
-  padding:8px 12px;
-  border-radius:6px;
-  text-decoration:none;
-  font-weight:600;
-}
-.btn:hover { background: var(--accent); }
 
-/* TIMINGS TABLE */
-.table {
-  width:100%;
-  border-collapse:collapse;
-  margin-top:12px;
+.course-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
 }
-.table th, .table td{
-  border:1px solid #e6eef6;
-  padding:10px;
-  text-align:left;
+
+.course-card h3 {
+    color: #2c5f2d;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
 }
-.table th { background:var(--blue-2); color:#fff; }
 
-/* TESTIMONIAL */
-.testimonial { background:#f0fbff; padding:12px; border-radius:8px; margin:10px 0; }
+.course-card p {
+    color: #666;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
 
-/* FOOTER */
+.enroll-btn {
+    background: #2c5f2d;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.enroll-btn:hover {
+    background: #ff6b35;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Ask Alim Section */
+.askalim {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-align: center;
+}
+
+.askalim h2 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.askalim p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.askalim-options {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.askalim-options iframe {
+    border-radius: 10px;
+    margin-top: 2rem;
+}
+
+/* Contact Section */
+.contact {
+    background: #2c3e50;
+    color: white;
+}
+
+.contact h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    margin-bottom: 3rem;
+    font-weight: 600;
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    transition: transform 0.3s;
+}
+
+.contact-item:hover {
+    transform: translateY(-5px);
+}
+
+.contact-item i {
+    font-size: 1.5rem;
+    color: #ff6b35;
+    margin-top: 0.2rem;
+}
+
+.contact-item a {
+    color: #ffd700;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-item a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Footer */
 footer {
-  background: linear-gradient(90deg, var(--blue-2), var(--blue-1));
-  color: #fff;
-  text-align:center;
-  padding:18px 12px;
-  margin-top:18px;
-}
-footer a { color:#ffeb9a; text-decoration: none; }
-
-/* FLOATING WHATSAPP BUTTON */
-.whatsapp-float {
-  position: fixed;
-  bottom: 22px;
-  right: 22px;
-  width:60px; height:60px;
-  background:#25d366;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-size:28px;
-  text-decoration:none;
-  box-shadow:0 6px 18px rgba(2,40,15,0.2);
-  z-index:1200;
+    background: #1a252f;
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
 }
 
-/* POPUP small card (for courses/home) */
+/* Popup */
 .popup {
-  position: fixed;
-  bottom: 100px;
-  right: 22px;
-  max-width:320px;
-  background: linear-gradient(180deg, var(--blue-1), var(--blue-2));
-  color:#fff;
-  padding:14px;
-  border-radius:10px;
-  box-shadow:0 8px 24px rgba(3,17,28,0.25);
-  display:none;
-  z-index:1300;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
 }
-.popup h4{ margin:0 0 6px; font-size:1rem; }
-.popup p{ margin:0 0 10px; font-size:0.95rem; }
-.popup a { display:inline-block; background:#fff; color:var(--blue-2); padding:6px 10px; border-radius:6px; text-decoration:none; font-weight:600; }
 
-/* RESPONSIVE */
-@media (max-width:640px){
-  header h1{ font-size:1.25rem; }
-  .section{ margin:14px 12px; padding:16px; }
-  .course-card img{ height:120px; }
-  .popup { right:12px; left:12px; bottom:90px; max-width:unset; }
+.popup-content {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    text-align: center;
+    position: relative;
+    max-width: 500px;
+    width: 90%;
+    color: #333;
+}
+
+.popup-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: #ccc;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background 0.3s;
+}
+
+.popup-close:hover {
+    background: #999;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: #2c5f2d;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        padding: 2rem 0;
+        gap: 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-item {
+        margin: 1rem 0;
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cta-button {
+        width: 250px;
+        justify-content: center;
+    }
+
+    section {
+        padding: 60px 0;
+    }
+
+    .about h2, .courses h2, .madani h2, .askalim h2, .contact h2 {
+        font-size: 2.2rem;
+    }
+
+    .course-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .nav-logo h2 {
+        font-size: 1.4rem;
+    }
+
+    .about h2, .courses h2, .madani h2, .askalim h2, .contact h2 {
+        font-size: 1.8rem;
+    }
 }
