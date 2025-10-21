@@ -27,25 +27,26 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Ask Alim Popup Functionality
+// Side Popup Functionality
 function showPopup() {
-    document.getElementById('askAlimPopup').style.display = 'flex';
+    document.getElementById('askAlimPopup').style.right = '20px';
 }
 
 function closePopup() {
-    document.getElementById('askAlimPopup').style.display = 'none';
+    document.getElementById('askAlimPopup').style.right = '-400px';
 }
 
-// Show popup 5 seconds after page load
+// Show popup 8 seconds after page load
 window.addEventListener('load', function() {
     setTimeout(function() {
         showPopup();
-    }, 5000);
+    }, 8000);
 });
 
-// Close popup when clicking outside the content
-document.getElementById('askAlimPopup').addEventListener('click', function(e) {
-    if (e.target === this) {
+// Close popup when clicking outside (for overlay - though we removed overlay)
+document.addEventListener('click', function(e) {
+    const popup = document.getElementById('askAlimPopup');
+    if (!popup.contains(e.target) && e.target !== hamburger) {
         closePopup();
     }
 });
@@ -85,15 +86,20 @@ document.querySelectorAll('.course-card').forEach(card => {
     observer.observe(card);
 });
 
-// Form submission handling (for future use)
-const contactForms = document.querySelectorAll('form, .contact-form');
-contactForms.forEach(form => {
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        // Add your form submission logic here
-        alert('Thank you for your message! We will get back to you soon.');
-        this.reset();
-    });
+// Observe video cards for animation
+document.querySelectorAll('.video-card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(card);
+});
+
+// Observe gallery images for animation
+document.querySelectorAll('.gallery-img').forEach(img => {
+    img.style.opacity = '0';
+    img.style.transform = 'translateY(20px)';
+    img.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(img);
 });
 
 // WhatsApp enrollment with course name
@@ -148,7 +154,7 @@ window.addEventListener('load', function() {
 // Keyboard accessibility for popup
 document.addEventListener('keydown', function(e) {
     const popup = document.getElementById('askAlimPopup');
-    if (e.key === 'Escape' && popup.style.display === 'flex') {
+    if (e.key === 'Escape' && popup.style.right === '20px') {
         closePopup();
     }
 });
@@ -194,10 +200,41 @@ function initWhatsAppIntegration() {
     document.body.appendChild(whatsappBtn);
 }
 
-// Initialize WhatsApp integration
-initWhatsAppIntegration();
+// Video background optimization
+function optimizeVideoBackground() {
+    const videoBg = document.querySelector('.video-bg iframe');
+    if (videoBg) {
+        // Add loading attribute for better performance
+        videoBg.setAttribute('loading', 'lazy');
+    }
+}
+
+// Initialize all features
+function initWebsite() {
+    initWhatsAppIntegration();
+    optimizeVideoBackground();
+    
+    // Add subtle animation to hero content
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent) {
+        heroContent.style.opacity = '0';
+        heroContent.style.transform = 'translateY(30px)';
+        heroContent.style.transition = 'opacity 1s ease, transform 1s ease';
+        
+        setTimeout(() => {
+            heroContent.style.opacity = '1';
+            heroContent.style.transform = 'translateY(0)';
+        }, 500);
+    }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initWebsite();
+});
 
 // Console welcome message
 console.log('🕌 Welcome to Al Furqan Scholars Academy Website!');
 console.log('📞 Contact: +923023003330');
 console.log('📧 Email: muftiakmalqtv2@gmail.com');
+console.log('🎥 Prize Distribution Video: Active');
