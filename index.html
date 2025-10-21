@@ -12,6 +12,7 @@
     <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
+                <img src="https://placehold.co/50x50/2c5f2d/white?text=AF" alt="Al Furqan Logo" class="logo-img">
                 <h2>Al Furqan Scholars Academy</h2>
             </div>
             <ul class="nav-menu">
@@ -19,6 +20,8 @@
                 <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="#courses" class="nav-link">Courses</a></li>
                 <li class="nav-item"><a href="#madani" class="nav-link">Quran Courses</a></li>
+                <li class="nav-item"><a href="#videos" class="nav-link">Videos</a></li>
+                <li class="nav-item"><a href="#gallery" class="nav-link">Gallery</a></li>
                 <li class="nav-item"><a href="#askalim" class="nav-link">Ask Alim</a></li>
                 <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -30,8 +33,19 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Prize Distribution Video -->
     <section id="home" class="hero">
+        <!-- Prize Distribution Video Background -->
+        <div class="video-bg">
+            <iframe 
+                src="https://www.youtube.com/embed/pwJCM5gikec?autoplay=1&mute=1&loop=1&playlist=pwJCM5gikec&controls=0&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3" 
+                frameborder="0" 
+                allow="autoplay; encrypted-media" 
+                allowfullscreen>
+            </iframe>
+            <div class="video-overlay"></div>
+        </div>
+        
         <div class="hero-content">
             <h1>Welcome to Al Furqan Scholars Academy</h1>
             <p>"Spreading the Light of Qur'an and Sunnah in English, Arabic & Urdu"</p>
@@ -115,18 +129,70 @@
         </div>
     </section>
 
+    <!-- Video Lectures Section -->
+    <section id="videos" class="videos">
+        <div class="container">
+            <h2>Video Lectures</h2>
+            <p>Watch our educational videos and lectures</p>
+            <div class="video-container">
+                <div class="video-card">
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/pwJCM5gikec" frameborder="0" allowfullscreen></iframe>
+                    <h3>Prize Distribution Ceremony</h3>
+                </div>
+                <div class="video-card">
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/EXAMPLE2" frameborder="0" allowfullscreen></iframe>
+                    <h3>Islamic Guidance</h3>
+                </div>
+                <div class="video-card">
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/EXAMPLE3" frameborder="0" allowfullscreen></iframe>
+                    <h3>Dars-e-Nizami Class</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <h2>Photo Gallery</h2>
+            <p>Moments from our academy and classes</p>
+            <div class="image-gallery">
+                <img src="https://placehold.co/300x200/2c5f2d/white?text=Class+1" alt="Classroom" class="gallery-img">
+                <img src="https://placehold.co/300x200/4caf50/white?text=Class+2" alt="Students" class="gallery-img">
+                <img src="https://placehold.co/300x200/ff6b35/white?text=Event+1" alt="Event" class="gallery-img">
+                <img src="https://placehold.co/300x200/667eea/white?text=Event+2" alt="Ceremony" class="gallery-img">
+            </div>
+        </div>
+    </section>
+
     <!-- Ask Alim Section -->
     <section id="askalim" class="askalim">
         <div class="container">
             <h2>Ask Alim</h2>
-            <p>Have a Shariah question? Ask our scholars via email or form submission.</p>
+            <p>Have a Shariah question? Our qualified scholars are here to help you with authentic Islamic guidance.</p>
+            
             <div class="askalim-options">
-                <a href="mailto:muftiakmalqtv2@gmail.com" class="cta-button">
-                    <i class="fas fa-envelope"></i> Email Ask Alim
-                </a>
-                <p>Or submit via form:</p>
-                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeEXAMPLE/viewform?embedded=true" 
-                        width="100%" height="600" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+                <div class="askalim-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Your Question</h3>
+                    <p>Send your question directly to our scholars via email</p>
+                    <a href="mailto:muftiakmalqtv2@gmail.com?subject=Ask%20Alim%20Question" class="cta-button">
+                        <i class="fas fa-paper-plane"></i> Send Email
+                    </a>
+                </div>
+                
+                <div class="askalim-card">
+                    <i class="fab fa-whatsapp"></i>
+                    <h3>WhatsApp Question</h3>
+                    <p>Get quick response via WhatsApp</p>
+                    <a href="https://wa.me/923023003330?text=I%20have%20a%20question%20for%20Alim" class="cta-button secondary" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Ask on WhatsApp
+                    </a>
+                </div>
+            </div>
+            
+            <div class="askalim-note">
+                <p><strong>Note:</strong> Our scholars respond to questions within 24-48 hours. Please provide clear details for accurate guidance.</p>
             </div>
         </div>
     </section>
@@ -196,14 +262,19 @@
         </div>
     </footer>
 
-    <!-- Ask Alim Popup -->
+    <!-- Ask Alim Side Popup -->
     <div id="askAlimPopup" class="popup">
         <div class="popup-content">
             <h3>Ask Alim</h3>
-            <p>Have a Shariah question? Ask our scholars via email.</p>
-            <a href="mailto:muftiakmalqtv2@gmail.com" class="cta-button">
-                <i class="fas fa-envelope"></i> Email Ask Alim
-            </a>
+            <p>Have a Shariah question? Contact our scholars directly:</p>
+            <div class="popup-buttons">
+                <a href="mailto:muftiakmalqtv2@gmail.com?subject=Ask%20Alim%20Question" class="cta-button small">
+                    <i class="fas fa-envelope"></i> Email
+                </a>
+                <a href="https://wa.me/923023003330?text=I%20have%20a%20question%20for%20Alim" class="cta-button small secondary" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+            </div>
             <button class="popup-close" onclick="closePopup()">×</button>
         </div>
     </div>
