@@ -92,21 +92,24 @@ body {
     transition: 0.3s;
 }
 
-/* Hero Section with Video */
+/* HERO SECTION - UPDATED FOR VIDEO */
 .hero {
-    height: 80vh;
+    height: 100vh;
     position: relative;
     margin-top: 80px;
-}
-
-.video-bg {
-    position: relative;
-    width: 100%;
-    height: 100%;
     overflow: hidden;
 }
 
-.video-bg iframe {
+.video-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.video-background iframe {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -119,33 +122,32 @@ body {
     width: 100%;
     height: 100%;
     background: linear-gradient(45deg, rgba(44, 95, 45, 0.7) 0%, rgba(76, 175, 80, 0.5) 100%);
+    z-index: 2;
 }
 
-/* Enrollment CTA */
-.enrollment-cta {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    padding: 4rem 0;
+.hero-content {
+    position: relative;
+    z-index: 3;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
+    color: white;
 }
 
-.enrollment-cta h2 {
-    font-size: 2.5rem;
+.hero-content h1 {
+    font-size: 3.5rem;
     margin-bottom: 1rem;
     font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
 }
 
-.enrollment-cta p {
-    font-size: 1.2rem;
+.hero-content p {
+    font-size: 1.5rem;
     margin-bottom: 2rem;
     opacity: 0.9;
-}
-
-.enrollment-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 .cta-button {
@@ -183,16 +185,6 @@ body {
 .cta-button.small {
     padding: 10px 20px;
     font-size: 0.9rem;
-}
-
-.view-courses-btn {
-    background: #2c5f2d;
-    box-shadow: 0 4px 15px rgba(44, 95, 45, 0.3);
-}
-
-.view-courses-btn:hover {
-    background: #245225;
-    box-shadow: 0 6px 20px rgba(44, 95, 45, 0.4);
 }
 
 /* Sections */
@@ -235,17 +227,25 @@ section h2 {
 
 .course-card {
     background: white;
-    padding: 2rem;
+    padding: 2.5rem 2rem;
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid #e0e0e0;
+    position: relative;
 }
 
 .course-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.course-card i {
+    font-size: 3rem;
+    color: #4caf50;
+    margin-bottom: 1.5rem;
+    display: block;
 }
 
 .course-card h3 {
@@ -258,6 +258,7 @@ section h2 {
     color: #666;
     margin-bottom: 1.5rem;
     line-height: 1.6;
+    min-height: 60px;
 }
 
 .enroll-btn {
@@ -279,6 +280,12 @@ section h2 {
     box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
 }
 
+/* Madani Section Specific */
+.madani .course-card {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 2px solid #4caf50;
+}
+
 /* Video Section */
 .video-container {
     display: grid;
@@ -293,11 +300,17 @@ section h2 {
     border-radius: 15px;
     box-shadow: 0 5px 20px rgba(0,0,0,0.1);
     text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
 }
 
 .video-card iframe {
     border-radius: 10px;
     margin-bottom: 1rem;
+    border: none;
 }
 
 .video-card h3 {
@@ -307,14 +320,14 @@ section h2 {
 
 .video-card p {
     color: #666;
-    font-style: italic;
+    font-size: 0.9rem;
 }
 
 /* Gallery */
 .image-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+    gap: 1.5rem;
     margin-top: 2rem;
 }
 
@@ -325,10 +338,12 @@ section h2 {
     border-radius: 10px;
     transition: transform 0.3s ease;
     cursor: pointer;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
 }
 
 .gallery-img:hover {
     transform: scale(1.05);
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
 }
 
 /* Ask Alim Section */
@@ -366,6 +381,7 @@ section h2 {
 .askalim-card p {
     color: #666;
     margin-bottom: 1.5rem;
+    line-height: 1.6;
 }
 
 .askalim-note {
@@ -374,13 +390,15 @@ section h2 {
     border-radius: 10px;
     border-left: 4px solid #4caf50;
     text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 /* Contact Section */
 .contact-info {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
     margin-top: 2rem;
 }
 
@@ -392,12 +410,19 @@ section h2 {
     background: white;
     border-radius: 10px;
     box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 20px rgba(0,0,0,0.15);
 }
 
 .contact-item i {
     font-size: 1.5rem;
     color: #4caf50;
     margin-top: 0.25rem;
+    min-width: 25px;
 }
 
 .contact-item strong {
@@ -438,6 +463,7 @@ footer {
     transform: translateY(100px);
     opacity: 0;
     transition: all 0.3s ease;
+    max-width: 300px;
 }
 
 .popup.show {
@@ -490,10 +516,15 @@ footer {
         transition: 0.3s;
         box-shadow: 0 10px 27px rgba(0,0,0,0.05);
         padding: 2rem 0;
+        gap: 0;
     }
     
     .nav-menu.active {
         left: 0;
+    }
+    
+    .nav-item {
+        margin: 0.5rem 0;
     }
     
     .nav-logo h2 {
@@ -501,37 +532,45 @@ footer {
     }
     
     .hero {
-        height: 60vh;
+        height: 70vh;
         margin-top: 70px;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.2rem;
     }
     
     section h2 {
         font-size: 2rem;
     }
     
-    .enrollment-cta h2 {
-        font-size: 2rem;
-    }
-    
-    .enrollment-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .cta-button {
-        width: 100%;
-        max-width: 300px;
-        justify-content: center;
-    }
-    
     .popup {
         left: 20px;
         right: 20px;
         bottom: 20px;
+        max-width: none;
     }
     
     .popup-buttons {
         flex-direction: column;
+    }
+    
+    .contact-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .course-grid,
+    .video-container,
+    .askalim-options {
+        grid-template-columns: 1fr;
+    }
+    
+    .image-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 }
 
@@ -544,14 +583,24 @@ footer {
         padding: 0 15px;
     }
     
-    .course-grid,
-    .video-container,
-    .askalim-options,
-    .contact-info {
-        grid-template-columns: 1fr;
+    .nav-logo h2 {
+        font-size: 1rem;
     }
     
-    .image-gallery {
-        grid-template-columns: 1fr;
+    .course-card {
+        padding: 2rem 1.5rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+    
+    section {
+        padding: 3rem 0;
+    }
+    
+    section h2 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
     }
 }
